@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Socket.IO Render Test</title>
+  <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+  <h1>Socket.IO Render Hosting Test</h1>
+  <button id="testBtn">Send test event</button>
+  <p id="status"></p>
+  <script>
+    const socket = io();
+
+    document.getElementById('testBtn').onclick = function() {
+      socket.emit('test-event', 'Hello Server!');
+      document.getElementById('status').textContent = 'Sent test-event to server...';
+    };
+
+    socket.on('test-reply', function(msg) {
+      document.getElementById('status').textContent = 'Reply received: ' + msg;
+    });
+  </script>
+</body>
+</html>
